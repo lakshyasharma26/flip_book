@@ -1,0 +1,517 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>BOOK</title>
+         
+  <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700i" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ribeye+Marrow" />
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+  <script src="booklet/jquery.easing.1.3.js" type="text/javascript"></script>
+  <script src="booklet/jquery.booklet.1.1.0.min.js" type="text/javascript"></script>
+  <link href="booklet/jquery.booklet.1.1.0.css" type="text/css" rel="stylesheet" media="screen" />
+		 
+	
+    <!-- ***style css***  -->
+   
+   <style>
+*{
+	margin:0;
+	padding:0;
+}
+body{
+	background-color: red;
+	align-items: center;
+	color:#444;
+	font-size:12px;
+	color: #333;
+    font-family: 'Oswald', sans-serif;
+}
+.video{
+	width: 100vw;
+	height: 100vh;
+	object-fit: cover;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: -1;
+}
+
+
+ 
+ 
+.booklet{
+	width:100vw;
+	height: 100vh;
+	position:relative;
+	margin:0 auto 0px;
+	-moz-box-shadow:0px 0px 1px #fff;
+	-webkit-box-shadow:0px 0px 1px #fff;
+	box-shadow:0px 0px 1px #fff;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	border-radius:10px;
+}
+.booklet .b-wrap-left  {
+	background:#efefef url(images/right_bg.jpg)  repeat;
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-bottom-left-radius: 10px;
+	-moz-border-radius-topleft:10px;
+	-moz-border-radius-bottomleft: 10px;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+.booklet .b-wrap-right {
+	background:#efefef url(images/right_bg.jpg)  repeat ;
+	-webkit-border-top-right-radius: 10px;
+	-webkit-border-bottom-right-radius: 10px;
+	-moz-border-radius-topright: 10px;
+	-moz-border-radius-bottomright: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+.booklet .b-counter {
+	bottom:8px;
+	position:absolute;
+	display:block;
+	width:90%;
+	height:20px;
+	border-top:1px solid #ddd;
+	color:#222;
+	text-align:center;
+	font-size:12px;
+	padding:5px 0 0;
+	background:transparent;
+	-moz-box-shadow:0px -1px 1px #fff;
+	-webkit-box-shadow:0px -1px 1px #fff;
+	box-shadow:0px -1px 1px #fff;
+	opacity:0.8;
+}
+.book_wrapper{
+	margin: 30px auto;
+	width: 900px;
+	height: 602px;
+	position:relative;
+	
+	
+	
+}
+.book_wrapper h1{
+	color:orange;
+	margin:5px 5px 5px 15px;
+	font-size:24px;
+	background:transparent url(images/h1.png) no-repeat bottom left;
+	padding-bottom:7px;
+    text-transform: uppercase;
+    font-weight: normal;
+}
+.book_wrapper p{
+	font-size:20px;
+	font-weight: bold;
+	margin:5px 5px 5px 15px;
+	text-transform: uppercase;
+}
+
+.book_wrapper a.demo{
+	margin-left:50px;
+}
+.book_wrapper a.article:hover,
+.book_wrapper a.demo:hover{
+	background-position:50% -41px;
+	color:#13386a;
+}
+.book_wrapper img{
+	margin:10px 0px 5px 35px;
+	width:300px;
+	padding:4px;
+	border:1px solid #ddd;
+	-moz-box-shadow:1px 1px 1px #fff;
+	-webkit-box-shadow:1px 1px 1px #fff;
+	box-shadow:1px 1px 1px #fff;
+}
+.book_wrapper .left {
+	margin:10px 0px 10px 35px;
+	width:310px;
+	height: 541px;
+	padding:4px;
+	border:1px solid #ddd;
+	-moz-box-shadow:1px 1px 1px #fff;
+	-webkit-box-shadow:1px 1px 1px #fff;
+	box-shadow:1px 1px 1px #fff;
+}
+.book_wrapper video{
+	margin:10px 0px 5px 35px;
+	width:310px;
+	height:541px;
+	padding:4px;
+	border:1px solid #ddd;
+	-moz-box-shadow:1px 1px 1px #fff;
+	-webkit-box-shadow:1px 1px 1px #fff;
+	box-shadow:1px 1px 1px #fff;
+}
+.booklet .b-wrap-right img{
+	border:1px solid #E6E3C2;
+}
+.booklet .b-wrap-right video{
+	border:1px solid #E6E3C2;
+}
+a#next_page_button,
+a#prev_page_button{
+	display:none;
+	position:absolute;
+	width:41px;
+	height:40px;
+	cursor:pointer;
+	margin-top:-20px;
+	top:50%;
+	background:transparent url(images/buttons.png) no-repeat 0px -40px;
+}
+a#prev_page_button{
+	left:-30px;
+}
+a#next_page_button{
+	right:-30px;
+	background-position:-41px -40px;
+}
+a#next_page_button:hover{
+	background-position:-41px 0px;
+}
+a#prev_page_button:hover{
+	background-position:0px 0px;
+}
+.love{
+	color: whitesmoke;
+	width: 100%;
+	margin: 10px auto;
+	height: fit-content;
+	background-color: transparent;
+	font-weight: bold;
+	font-size: 3rem;
+	font-style: italic;
+	font-family: Ribeye Marrow; 
+	align-items: center;
+	text-align: center;
+	line-height: 1.1;
+}
+
+
+ 
+</style>
+
+<!-- *** end css*** -->
+		 
+</head>
+    <body>
+		<video class="video" src="images/background.mp4" autoplay loop muted></video>
+		
+		
+     
+		<div class="book_wrapper">
+			<a id="next_page_button"></a>
+			<a id="prev_page_button"></a>
+			 
+			<div id="mybook" style="display:none;">
+				<div class="b-load">
+					<div>
+						<video src="images/11.mp4" autoplay loop muted> </video> 
+						
+					</div>
+					<div>
+						<img src="images/12.jpg" alt=""/>
+						<h1>16th May 2023</h1>
+						<p>Ye hum dono ki 1st pic hai or hum pen drive ke bhane biggies m mile aap m gun or suhail or humne burger pizza khaya😂 or mje kre photos li or jiya ki burai kri🤣</p>	
+					</div>	
+					<div>
+						<img class="left" src="images/21.jpg"> 
+						
+					</div>
+					<div>
+						<img src="images/22.jpg" alt=""/>
+						<h1>29th May 2023</h1>
+						<p>Ye jb hum sunderdeep m mile the aap m suhail or gun or hum college m ghum rhe or ek uncle ne hume ghumne na diya fir hum bhar aaye or photos li or snap send kr ke jiya ko kilsaya🤣😂</p>	
+				</div>	
+					<div>
+						<img class="left" src="images/31.jpg"> 
+						
+					</div>
+					<div>
+						<img src="images/32.jpg" alt=""/>
+						<h1>13th June 2023</h1>
+						<p>ye jb hum 1st tym golden cafe m mile aap m or suhail or humne khaya piya or aap mera tutorial kr ke bhi laye or humne dusri bar cafe m photos li biggies ke badd😗😁</p>	
+					</div>	
+					<div>
+						<img class="left" src="images/41.jpg"> 
+						
+					</div>
+					<div>
+						<img src="images/42.jpg" alt=""/>
+						<h1>17th July 2023</h1>
+						<p>ye hum dubara jb golden cafe gye or apki coaching ka last day tha or nhi bhi tha qki aap sirf meri file dene aaye the or uske bad apki coaching bhi nhi thi or hume lg rha tha ab pta nhi kb milenge is liye humne acchi aachi pic li😁😥</p>	
+					</div>	
+					<div>
+						<img class="left" src="images/51.jpg"> 
+						
+					</div>
+					<div>
+						<img src="images/52.jpg" alt=""/>
+						<h1>8th August 2023</h1>
+						<p>ye jb aap hapur aaye the food adda gun ke sath b'day m or aap aana nhi chah rhe the to gun ne mere se bat kri or apse kha ki lakshya se mil liyeo uske bad aap aaye or hum dono bhar hi bethe rhe or jb photo le rhe to ek aunty humare piche thi or dekh rhi humari photos m🤣😂🤣</p>	
+					</div>
+					<div>
+						<video src="images/61.mp4" autoplay loop muted> </video> 
+						
+					</div>
+					<div>
+						<img src="images/62.jpg" alt=""/>
+						<h1>21th August 2023</h1>
+						<p>ye jb hum biggies m mile aap m or jiya or m ghar se jhuth bol kr aaya ki mera prctical h or m suhail ko ese hi le gya tha apne sath or uske bad hum biggies gye or jiya ka muh bhii bn gya tha qki aap or m ek side beth gye the😂🤣🤣</p>	
+					</div>
+					<div>
+						<img class="left" src="images/71.jpg"> 
+						
+					</div>
+					<div>
+						<img src="images/72.jpg" alt=""/>
+						<h1>5th Sepetember 2023</h1>
+						<p>ye jb hum 1st tym hapur aaye the or 1st movie dekhi thi (dream girl 2) or ye humari 1st movie thi as a friend wali jo humne santi se dekhi na kuch bat kri or na kiss 🤣 uske bad humare pass tym tha to apne kha photos to click kr le to fir humne flyover ke side m li aachi acchi sunder pics😍😘</p>	
+					</div>
+					<div>
+						<img class="left" src="images/81.jpg"> 
+						
+					</div>
+					<div>
+						<img src="images/82.jpg" alt=""/>
+						<h1>13th Sepetember 2023</h1>
+						<p>ye jb aap hum humare college aaye the or college m ghumaya apko tanu ne or class m bethe mje kre or pohots li ukse bad hath pkd ke bhar aaye or road cross kri fir ghar bhi sath auto m aaye the😙 </p>	
+					</div>
+					<div>
+						<img class="left" src="images/91.jpg"> 
+						
+					</div>
+					<div>
+						<img src="images/92.jpg" alt=""/>
+						<h1>19th Sepetember 2023</h1>
+						<p>ye jb hum pkw movie dekhne gye the (jawan) aap m or mere dost or ye 1st first movie thi humari relation m aane ke bad or mene yha apse kiss ke liye bola apne phle mna kr di uske bad hnn kri🤣 or muje yhaa ki ek bat pr bhott hassi aati h aaj bhi jb apne mera muh pkd kr gall pr kiss kiiii🤣🤣😂😂</p>	
+					</div>
+					<div>
+						<img class="left" src="images/101.jpg"> 
+						
+					</div>
+					<div>
+						<img src="images/102.jpg" alt=""/>
+						<h1>21th Sepetember 2023</h1>
+						<p>ye jb tanu ka b'day tha or hum jbhi 1st tym inhouse gye uske bad kbhi nhi gye😂or m apko or jiya ko college se bike pr laya tha pr jiya chali gai thi ghar pr hume khussi thi ki vo chali gai🤭😥 or gun bhi aai thi or usi din humne ek hi plate m khana khaya or ek dusre ko bhi khilaya jb sub hass rhe ki dekho pyrrr or na hume lene di dusri plate ki ek hi plate m khao🤣😂</p>	
+					</div>
+					<div>
+						<video src="images/111.mp4" autoplay loop muted> </video> 
+						
+					</div>
+					<div>
+						<img src="images/112.jpg" alt=""/>
+						<h1>7th october 2023</h1>
+						<p>Ye jb hum krishna restaurant m mile the Rishabh ke bday pr or m ghar se jhuth bol kr aaya tha ki college m Hackathon  h or vanshika bhi aayi ki kuch to h kuch to h kr rhi😂🤣 or jb photo le rhe to ki pose dekh rhi🤣😂</p>	
+					</div>
+					<div>
+						<img class="left" src="images/121.jpg"> 
+						
+					</div>
+					<div>
+						<img src="images/122.jpg" alt=""/>
+						<h1>6th november 2023</h1>
+						<p>Ye jb hum sunderdeep mile or apki fresher party thi or apne pic send kri uske bad mere se ruka na gya or m apse milne aaya or uske bad is photo ki story Tani ne dekh li or mummy ko dikha di🥲🙃😂</p>	
+					</div>
+					<div>
+						<img class="left" src="images/131.jpg"> 
+						
+					</div>
+					<div>
+						<img src="images/132.jpg" alt=""/>
+						<h1>8th november 2023</h1>
+						<p>Je jb hum gzb gye the or us din hmne 9 ghnte sath rhe or mridul or Shivani bhi aaye or humne shopping bhi ki thi vo subse aacha din tha humara😁😁😍</p>	
+					</div>
+					<div>
+						<img class="left" src="images/141.jpg"> 
+						
+					</div>
+					<div>
+						<img src="images/142.jpg" alt=""/>
+						<h1>25th november 2023</h1>
+						<p>Ye jb hum pkw ke smart point pr mile the aap market se aa rhe the or m college se ghar ja rha tha cricket khell kr vishu bhi sath tha fir apne chips dilaye muje😁😍</p>	
+					</div>
+					<div>
+						<img class="left" src="images/151.jpg"> 
+						
+					</div>
+					<div>
+						<img src="images/152.jpg" alt=""/>
+						<h1>5th december 2023</h1>
+						<p>Ye jb hum Hapur movie dekhne gye (animal) paper chod kr or humne bhott hi Jada kiss kri uss dinn🤭😂 fir uske bad hpda bhi gye òr use dhunde m bhi tym lga tha🤣 uske bad park m bhi kiss kri🤭🤭😂</p>	
+					</div>
+					<div>
+						<img class="left" src="images/161.jpg"> 
+						
+					</div>
+					<div>
+						<img src="images/162.jpg" alt=""/>
+						<h1>4th january 2024</h1>
+						<p>Ye Jb hum 7 coin m mile the aap m or suhail  1st tym 2024 m or apka paper tha fir vha bethe khaya piya or kiss krii🤭🤭😂</p>	
+					</div>
+					<div>
+						<img class="left" src="images/171.jpg"> 
+						
+					</div>
+					<div>
+						<img src="images/172.jpg" alt=""/>
+						<h1>12th january 2024</h1>
+						<p>Ye jb hum gun ke b'day  m dubra krishna restaurant m mile the  aap m gun vanshika or Rishabh  or m us din bhi jhuth bol kr aaya tha ki admit card Lana h college se or us din apke yha bhi drame hue or apke liye vo din subse bekar tha phle pr milne ke bad sub shi ho gya tha😁😚😍</p>	
+					</div>
+					<div>
+						<img class="left" src="images/181.jpg"> 
+						
+					</div>
+					<div>
+						<img src="images/182.jpg" alt=""/>
+						<h1>19th february 2024</h1>
+						<p>Ye jb aap Sanskar pr aaye or hum overbridge pr hi bethe bat kri kiss kri or bss ese hi mje kre😁😗</p>	
+					</div>
+					<div>
+						<img class="left" src="images/191.jpg"> 
+						
+					</div>
+					<div>
+						<img src="images/192.jpg" alt=""/>
+						<h1>28th february 2024</h1>
+						<p>Ye jb hum gzb movie (Crack) dekhne gye the aap m Nishant hritik or lavish or humne vha bhi kiss kri or bad m jb photo click kr rhe the to Nishant ne btaya love bite ka🤣😂 uske bad bhar jake lunch kra fir bapis aake foundation lgaya fir aap dte dte ghar gye😂🤣</p>	
+					</div>
+					<div>
+						<img class="left" src="images/201.jpg"> 
+						
+					</div>
+					<div>
+						<img src="images/202.jpg" alt=""/>
+						<h1>29th february 2024</h1>
+						<p>Ye jb aap Sanskar aaye love💋 bite dikhane ke liye or m apke liye fool laya tha fir bethe photo click kri😂😂 fir aap khe rhe ki jb apko dungi na love bite jb pta chalegi ghar pr kese chupa ke rhna pde🤣😂</p>	
+					</div>
+					<div>
+						<img class="left" src="images/211.jpg"> 
+						
+					</div>
+					<div>
+						<img src="images/212.jpg" alt=""/>
+						<h1>5th march 2024</h1>
+						<p>Ye jb aap Sanskar aaye or uske bad hum Jain sikanji gye aap m Nishant suhail lavish hritik or khaya piya photo li😁😚</p>	
+					</div>
+					<div>
+						<img class="left" src="images/221.jpg"> 
+						
+					</div>
+					<div>
+						<img src="images/222.jpg" alt=""/>
+						<h1>21th march 2024</h1>
+						<p>Ye jb hum Delhi gye the to ye waste of wonder park gye 😂 dinosaur 🦕 se mile vha or ghume park m mje kra or us bsdk ne photo bhi na lene di acche se😕</p>	
+					</div>
+					<div>
+						<img class="left" src="images/231.jpg"> 
+						
+					</div>
+					<div>
+						<img src="images/232.jpg" alt=""/>
+						<h1>21th march 2024</h1>
+						<p>Ye usi din jb Delhi gye to fir Akshardham gye fir vha darshan kre or ghume pure m fir uske badd gollgappe khaye sath m fir bapis ghar aaye to change krne ke liye mall gye vha apki mummy ka phn aa gya to Dr gye or apne kpde bhi muje de gye😂🤣</p>	
+					</div>
+					<div>
+						<img class="left" src="images/241.jpg"> 
+						
+					</div>
+					<div>
+						<img src="images/242.jpg" alt=""/>
+						<h1>8th april 2024</h1>
+						<p>Ye jb aap Sanskar aaye or humare college m fest chal rhe the or us din suhail ke bhai ki ldai ho gai thi😂😂</p>	
+					</div>
+					<div>
+						<img class="left" src="images/251.jpg"> 
+						
+					</div>
+					<div>
+						<img src="images/252.jpg" alt=""/>
+						<h1>29th april 2024</h1>
+						<p>Ye jb apka b'day tha or apko periods bhi ho gye🥲 pr us bsdk ke chakker m jana pda golden cafe or na koi cake laya cut krne ko🤣 bss ese hi kha ke party bna li🤭😂 gun bhi thi sath usne hi photo click kri😁😁</p>	
+					</div>
+					<div>
+						<video src="images/261.mp4" autoplay loop muted></video> 
+						
+					</div>
+					<div>
+						<img src="images/262.jpg" alt=""/>
+						<h1>18th May 2024</h1>
+						<p>Ye ye din to kbhi na bhulne ke😁 jb aap ghar aaye sub Ayodhya gye the bhabhi se milvaya or kittu apko dekh kr ro gai or humne Jo kra 3no room m🤤🥵vo to pta hi h apko🤭</p>	
+					</div>
+					<div>
+						<img class="left" src="images/271.jpg"> 
+						
+					</div>
+					<div>
+						<img src="images/272.jpg" alt=""/>
+						<h1>4th june 2024</h1>
+						<p>Ye jb hum Hapur gye pizza hut or apka soft skills ka practical tha or paper bad jbhi mile qki uske bad pta nhi kb milenge is liye us din milne ka plan bnaya😁😚</p>	
+					</div>
+					<div>
+						<img class="left" src="images/281.jpg"> 
+						
+					</div>
+					<div>
+						<img src="images/282.jpg" alt=""/>
+						<h1>4th Sepetember 2024</h1>
+						<p>Ye abhi last tym jb golden cafe gye the aap m gun or mere dost or aap fee ke liye aaye or mere se milne ke liye qki hume mile hue 3 mhine ho gye the🥲🥲</p>	
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="love"> <h1> LOVEEE UHHHH JAAANNNNNN😙😚😚😘😘💗💖💝💞💋💋💋💋💋💋💋💋💋💋💋</h1>
+			</div>
+        
+        <script type="text/javascript">
+			document.addEventListener("contextmenu",function(e){e.preventDefault();
+			})
+			$(function() {
+				var $mybook 		= $('#mybook');
+				var $bttn_next		= $('#next_page_button');
+				var $bttn_prev		= $('#prev_page_button');
+				var $loading		= $('#loading');
+				var $mybook_images	= $mybook.find('img');
+				var cnt_images		= $mybook_images.length;
+				var loaded			= 0;
+				 
+				$mybook_images.each(function(){
+					var $img 	= $(this);
+					var source	= $img.attr('src');
+					$('<img/>').load(function(){
+						++loaded;
+						if(loaded == cnt_images){
+							$loading.hide();
+							$bttn_next.show();
+							$bttn_prev.show();
+							$mybook.show().booklet({
+								name:               null,                            //  
+								width:              800,                             //  
+								height:             600,                             //   
+								speed:              850,                             //  
+								direction:          'LTR',                           //  
+								                                                     //  
+								next:               $bttn_next,          			//  
+								prev:               $bttn_prev,          			//  
+								                       
+							});
+							Cufon.refresh();
+						}
+					}).attr('src',source);
+				});
+				
+			});
+        </script>
+ 
+    </body>
+ 
+</html>
